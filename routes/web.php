@@ -1,4 +1,5 @@
 <?php
+use App\Models\MusicGenre;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,7 @@ Route::post('change_password', 'Auth\ChangePasswordController@changePassword');
 
 Route::view('agreement', 'agreement')->name('agreement');
 Route::view('privacy_policy', 'privacy_policy')->name('privacy_policy');
+
+Route::model('genre', MusicGenre::class);
+Route::get ('genre', 'MusicGenreController@list')->name('genre.list');
+Route::get ('genre/{genre}', 'MusicGenreController@show')->name('genre.show');

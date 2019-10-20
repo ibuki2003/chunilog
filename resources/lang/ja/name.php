@@ -6,4 +6,8 @@ return [
     'change_password' => 'パスワードの変更',
     'agreement' => '利用規約',
     'privacy_policy' => 'プライバシーポリシー',
+    'genre' => [
+        'list' => 'ジャンル一覧',
+        'show' => ':name の曲一覧',
+    ],
 ];
