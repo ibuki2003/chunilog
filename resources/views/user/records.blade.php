@@ -23,7 +23,7 @@
         @foreach($user->records as $record)
             <tr>
                 <td>{{$record->music->name}}</td>
-                <td>{{$record->getLevelStr()}}</td>
+                <td class="table-{{$record->getLevelStyleName()}}">{{$record->getLevelStr()}}</td>
                 <td>{{$record->music->getDifficulty($record->level)}}</td>
                 <td>{{$record->getScore()}}</td>
                 <td>{{$record->getRank()}}</td>

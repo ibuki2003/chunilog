@@ -10,8 +10,11 @@
 
 @section('content')
 <h2>{{__('ui.music.name')}}</h2>
-<p><a href="{{route('music.show', ['music'=>$record->music_id])}}">{{$record->music->name}}</a></p>
-<p>{{$record->level}}</p>
+<p>
+    <a href="{{route('music.show', ['music'=>$record->music_id])}}">{{$record->music->name}}</a>
+    <span class="badge badge-{{$record->getLevelStyleName()}}">{{$record->getLevelStr()}}</span>
+</p>
+
 
 <h2>{{__('ui.record.store')}}</h2>
 <p>{{$record->store}}</p>
@@ -22,10 +25,10 @@
 <h2>{{__('ui.record.counts')}}</h2>
 <table class="table">
     <tbody>
-        <tr><th>JCRITICAL</th><td>{{$record->jc_cnt}}</td></tr>
-        <tr><th>CRITICAL</th> <td>{{$record->cr_cnt}}</td></tr>
-        <tr><th>ATTACK</th>   <td>{{$record->at_cnt}}</td></tr>
-        <tr><th>MISS</th>     <td>{{$record->ms_cnt}}</td></tr>
+        <tr class="table-jcritical"><th>JCRITICAL</th><td>{{$record->jc_cnt}}</td></tr>
+        <tr class="table-critical"><th>CRITICAL</th> <td>{{$record->cr_cnt}}</td></tr>
+        <tr class="table-attack"><th>ATTACK</th>   <td>{{$record->at_cnt}}</td></tr>
+        <tr class="table-miss"><th>MISS</th>     <td>{{$record->ms_cnt}}</td></tr>
     </tbody>
 </table>
 
