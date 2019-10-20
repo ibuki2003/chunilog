@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('title', __('新規登録'))
+
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('home')}}">{{__('name.home')}}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{__('name.register')}}</li>
+@endsection
+
 @section('content')
 <form method="POST" action="{{route('register')}}">
     @csrf

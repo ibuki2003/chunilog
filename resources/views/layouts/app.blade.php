@@ -68,6 +68,11 @@
         </nav>
     </header>
     <main class="container my-4 py-4 bg-white shadow-sm rounded">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                @yield('breadcrumb')
+            </ol>
+        </nav>
         <h1>@yield('title')</h1>
         @yield('content')
     </main>

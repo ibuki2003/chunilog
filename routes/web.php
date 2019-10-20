@@ -13,9 +13,7 @@ use App\Models\MusicGenre;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome')->name('home');
 
 Route::get ('signin', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('signin', 'Auth\LoginController@login');

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('title', __('name.change_password'))
+
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('home')}}">{{__('name.home')}}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{__('name.change_password')}}</li>
+@endsection
+
 @section('content')
 @if(session('success'))
     <p class="alert alert-success">{{session('success')}}</p>

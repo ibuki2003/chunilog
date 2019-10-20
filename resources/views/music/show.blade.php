@@ -1,5 +1,13 @@
 @extends('layouts.app')
 @section('title', __('name.music.show', ['name' => $music->name]))
+
+@section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{route('home')}}">{{__('name.home')}}</a></li>
+<li class="breadcrumb-item"><a href="{{route('genre.list')}}">{{__('name.genre.list')}}</a></li>
+<li class="breadcrumb-item"><a href="{{route('genre.show', ['genre' => $music->genre->id])}}">{{$music->genre->name}}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{$music->name}}</li>
+@endsection
+
 @section('content')
 <h2>{{__('ui.music.name')}}</h2>
 <p>{{$music->name}}</p>
