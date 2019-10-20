@@ -11,4 +11,8 @@ class MusicGenre extends Model {
     public $timestamps = false;
 
     protected $fillable = ['id', 'name'];
+
+    public function musics() {
+        return $this->hasMany('App\Models\Music', 'genre_id');
+    }
 }
