@@ -4,7 +4,7 @@
 @section('breadcrumb')
 <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('name.home')}}</a></li>
 <li class="breadcrumb-item"><a href="{{route('user.show', ['user'=>$record->user_id])}}">{{$record->user_id}}</a></li>
-<li class="breadcrumb-item"><a href="{{route('user.record.list', ['user'=>$record->user_id])}}">{{__('ui.record.list')}}</a></li>
+<li class="breadcrumb-item"><a href="{{route('user.records', ['user'=>$record->user_id])}}">{{__('ui.record.list')}}</a></li>
 <li class="breadcrumb-item active" aria-current="page">{{__('ui.record.detail')}}</li>
 @endsection
 

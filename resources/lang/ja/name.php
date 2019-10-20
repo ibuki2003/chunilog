@@ -1,6 +1,7 @@
 <?php
 return [
     'home' => 'ホーム',
+    'mypage' => 'マイページ',
     'login' => 'ログイン',
     'register' => '新規登録',
     'logout' => 'ログアウト',
@@ -16,5 +17,9 @@ return [
     ],
     'record' => [
         'show' => ':user のプレイ詳細',
+        'list' => ':user のプレイ一覧',
+    ],
+    'user' => [
+        'show' => ':user の情報',
     ],
 ];
