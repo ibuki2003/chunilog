@@ -20,5 +20,15 @@ return [
         'artist' => 'アーティスト',
         'difficulties' => '難易度',
         'info_gamerch' => 'CHUNITHM攻略Wikiで曲情報を見る',
+        'level' => 'レベル',
+        'difficulty' => '難易度',
+    ],
+    'record' => [
+        'detail' => 'プレイ詳細',
+        'counts' => '内訳',
+        'store' => 'プレイ場所',
+        'time' => 'プレイ時刻',
+        'score' => 'スコア',
+        'rank' => 'ランク',
     ],
 ];

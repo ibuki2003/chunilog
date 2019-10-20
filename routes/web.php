@@ -1,5 +1,6 @@
 <?php
 use App\Models\Music;
+use App\Models\Record;
 use App\Models\MusicGenre;
 
 /*
@@ -36,3 +37,6 @@ Route::get ('genre/{genre}', 'MusicGenreController@show')->name('genre.show');
 
 Route::model('music', Music::class);
 Route::get ('music/{music}', 'MusicController@show')->name('music.show');
+
+Route::model('record', Record::class);
+Route::get ('record/{record}', 'RecordController@show')->name('record.show');

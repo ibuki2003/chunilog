@@ -14,4 +14,7 @@ return [
     'music' => [
         'show' => ':name の曲情報',
     ],
+    'record' => [
+        'show' => ':user のプレイ詳細',
+    ],
 ];
