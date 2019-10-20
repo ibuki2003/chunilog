@@ -42,4 +42,8 @@ class User extends Authenticatable
 
     public $incrementing = false;
 
+    public function records() {
+        return $this->hasMany('App\Models\Record');
+    }
+
 }
