@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,51 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof ModelNotFoundException)
+            throw new NotFoundHttpException();
+        if($request->is('api/*') || $request->ajax()){
+            $status = 400;
+            if ($this->isHttpException($exception)) {
+                $status = $exception->getStatusCode();
+            }
+            return response()->json([
+                'status' => $status,
+                'errors' => $exception->getMessage()
+            ], $status);
+        }
         return parent::render($request, $exception);
+    }
+
+    protected function renderHttpException(HttpExceptionInterface $e){
+        $this->registerErrorViewPaths();
+        $message = $e->getMessage();
+        switch ($e->getStatusCode()) {
+            case 400:
+                $name = "Bad Request";
+                break;
+            case 403:
+                $name = "Forbidden";
+                break;
+            case 404:
+                $name = "Not Found";
+                break;
+            case 500:
+                $name = "Internal Server Error";
+                $message="";
+                break;
+            case 503:
+                $name = "Service Unavailable";
+                break;
+            default:
+                $name = "Error";
+                break;
+
+        }
+
+        return response()->view('error', [
+            'statuscode' => (string)($e->getStatusCode()),
+            'name' => $name,
+            'message' => $message
+        ],$e->getStatusCode(), $e->getHeaders());
     }
 }

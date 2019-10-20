@@ -13,4 +13,6 @@ return [
     'agreement' => '利用規約, プライバシーポリシーに同意する',
     'register' => '登録',
     'login' => 'ログイン',
+    'go_to_home' => 'ホームへもどる',
+    'go_to_prev' => '前のページへもどる',
 ];
