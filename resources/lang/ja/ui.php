@@ -15,4 +15,10 @@ return [
     'login' => 'ログイン',
     'go_to_home' => 'ホームへもどる',
     'go_to_prev' => '前のページへもどる',
+    'music' => [
+        'name' => 'タイトル',
+        'artist' => 'アーティスト',
+        'difficulties' => '難易度',
+        'info_gamerch' => 'CHUNITHM攻略Wikiで曲情報を見る',
+    ],
 ];

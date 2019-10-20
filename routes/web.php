@@ -1,4 +1,5 @@
 <?php
+use App\Models\Music;
 use App\Models\MusicGenre;
 
 /*
@@ -34,3 +35,6 @@ Route::view('privacy_policy', 'privacy_policy')->name('privacy_policy');
 Route::model('genre', MusicGenre::class);
 Route::get ('genre', 'MusicGenreController@list')->name('genre.list');
 Route::get ('genre/{genre}', 'MusicGenreController@show')->name('genre.show');
+
+Route::model('music', Music::class);
+Route::get ('music/{music}', 'MusicController@show')->name('music.show');

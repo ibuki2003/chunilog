@@ -10,4 +10,7 @@ return [
         'list' => 'ジャンル一覧',
         'show' => ':name の曲一覧',
     ],
+    'music' => [
+        'show' => ':name の曲情報',
+    ],
 ];
