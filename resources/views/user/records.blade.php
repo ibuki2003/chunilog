@@ -12,6 +12,7 @@
     <thead>
         <tr>
             <th>{{__('ui.music.name')}}</th>
+            <th>{{__('ui.record.time')}}</th>
             <th>{{__('ui.music.level')}}</th>
             <th>{{__('ui.music.difficulty')}}</th>
             <th>{{__('ui.record.score')}}</th>
@@ -23,6 +24,7 @@
         @foreach($user->records as $record)
             <tr>
                 <td>{{$record->music->name}}</td>
+                <td>{{$record->time}}</td>
                 <td class="table-{{$record->getLevelStyleName()}}">{{$record->getLevelStr()}}</td>
                 <td>{{$record->music->getDifficulty($record->level)}}</td>
                 <td>{{$record->getScore()}}</td>
