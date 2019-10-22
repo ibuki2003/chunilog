@@ -44,4 +44,6 @@ Route::model('records', Record::class);
 Route::model('user', User::class);
 Route::get ('user/{user}', 'UserController@show')->name('user.show');
 Route::get ('user/{user}/records', 'UserController@recordList')->name('user.records');
+Route::get ('user/{user}/records/new', 'RecordController@create')->name('record.new');//->middleware('auth');
+Route::post('user/{user}/records/new', 'RecordController@store');
 Route::get ('user/{user}/records/{record}', 'RecordController@show')->name('record.show');

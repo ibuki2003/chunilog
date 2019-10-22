@@ -13,6 +13,23 @@ class Record extends Model {
         'jc_cnt', 'cr_cnt', 'at_cnt', 'ms_cnt', 'max_cmb', 'track_no',
     ];
 
+    protected $dates = ['time'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->{$model->getKeyName()} = md5($model->user_id.$model->time->format('YmdHis'));
+        });
+    }
+
+    public static function create(array $data) {
+        $data['user_id']=auth()->id();
+        $model = static::query()->create($data);
+        return $model;
+    }
+
     public function music() {
         return $this->belongsTo('App\Models\Music');
     }
