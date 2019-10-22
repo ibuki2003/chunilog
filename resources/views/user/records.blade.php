@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($user->records as $record)
+        @foreach($user->records()->orderBy('time')->get() as $record)
             <tr>
                 <td>{{$record->music->name}}</td>
                 <td>{{$record->time}}</td>
