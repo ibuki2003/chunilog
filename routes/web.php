@@ -39,9 +39,9 @@ Route::get ('genre/{genre}', 'MusicGenreController@show')->name('genre.show');
 Route::model('music', Music::class);
 Route::get ('music/{music}', 'MusicController@show')->name('music.show');
 
-Route::model('records', Record::class);
-Route::get ('records/{record}', 'RecordController@show')->name('record.show');
 
+Route::model('records', Record::class);
 Route::model('user', User::class);
 Route::get ('user/{user}', 'UserController@show')->name('user.show');
 Route::get ('user/{user}/records', 'UserController@recordList')->name('user.records');
+Route::get ('user/{user}/records/{record}', 'RecordController@show')->name('record.show');

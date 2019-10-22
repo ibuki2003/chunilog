@@ -27,7 +27,7 @@
                 <td>{{$record->music->getDifficulty($record->level)}}</td>
                 <td>{{$record->getScore()}}</td>
                 <td>{{$record->getRank()}}</td>
-                <td><a href="{{route('record.show', ['record'=>$record->id])}}">{{__('ui.record.detail')}}</a></td>
+                <td><a href="{{route('record.show', ['user'=>$record->user_id, 'record'=>$record->id])}}">{{__('ui.record.detail')}}</a></td>
             </tr>
         @endforeach
     </tbody>
