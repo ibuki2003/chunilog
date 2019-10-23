@@ -40,4 +40,10 @@ class RecordController extends Controller {
         }
         return redirect(route('record.new', ['user'=>auth()->id()]))->with('success', 'ui.record.created');
     }
+
+    public function destroy(User $user, Record $record) {
+        abort_unless($record->user_id === auth()->id(), 403);
+        $record->delete();
+        return redirect()->route('user.records', ['user' => auth()->id()]);
+    }
 }

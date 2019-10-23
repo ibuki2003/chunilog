@@ -39,4 +39,33 @@
 @endif
 <p>SCORE:{{$record->getScore()}}</p>
 <p>RANK:{{$record->getRank()}}</p>
+
+@if($record->user_id == auth()->id())
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#recordDeleteModal">
+        {{__('ui.record.delete')}}
+    </button>
+    <div class="modal fade" id="recordDeleteModal" tabindex="-1" role="dialog" aria-labelledby="recordDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="recordDeleteModalLabel">{{__('ui.record.delete')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{__('ui.record.delete_confirm')}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('ui.cancel')}}</button>
+                    <form id="delete-form" action="{{ route('record.destroy', ['user'=>$record->user_id, 'record'=>$record]) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">{{__('ui.submit')}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 @endsection

@@ -47,3 +47,4 @@ Route::get ('user/{user}/records', 'UserController@recordList')->name('user.reco
 Route::get ('user/{user}/records/new', 'RecordController@create')->name('record.new');//->middleware('auth');
 Route::post('user/{user}/records/new', 'RecordController@store');
 Route::get ('user/{user}/records/{record}', 'RecordController@show')->name('record.show');
+Route::delete('user/{user}/records/{record}', 'RecordController@destroy')->name('record.destroy');

@@ -4,6 +4,7 @@ return [
     'old_password' => '変更前のパスワード',
     'new_password' => '変更後のパスワード',
     'submit' => '送信',
+    'cancel' => 'キャンセル',
     'password' => 'パスワード',
     'remember_me' => 'ログイン情報を記憶する',
     'email' => 'メールアドレス',
@@ -31,6 +32,8 @@ return [
         'score' => 'スコア',
         'rank' => 'ランク',
         'list' => 'プレイ一覧',
+        'delete' => '記録の削除',
+        'delete_confirm' => 'この記録を本当に削除しますか?削除した記録を元に戻すことはできません.',
     ],
     'user' => [
         'play_cnt' => 'プレイ数',
