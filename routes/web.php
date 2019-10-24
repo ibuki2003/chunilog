@@ -39,12 +39,17 @@ Route::get ('genre/{genre}', 'MusicGenreController@show')->name('genre.show');
 Route::model('music', Music::class);
 Route::get ('music/{music}', 'MusicController@show')->name('music.show');
 
-
-Route::model('records', Record::class);
 Route::model('user', User::class);
-Route::get ('user/{user}', 'UserController@show')->name('user.show');
-Route::get ('user/{user}/records', 'UserController@recordList')->name('user.records');
-Route::get ('user/{user}/records/new', 'RecordController@create')->name('record.new');//->middleware('auth');
-Route::post('user/{user}/records/new', 'RecordController@store');
-Route::get ('user/{user}/records/{record}', 'RecordController@show')->name('record.show');
-Route::delete('user/{user}/records/{record}', 'RecordController@destroy')->name('record.destroy');
+Route::prefix('user/{user}')->group(function () {
+    Route::get ('', 'UserController@show')->name('user.show');
+    Route::get ('records', 'UserController@recordList')->name('user.records');
+    Route::get ('records/new', 'RecordController@create')->name('record.new');//->middleware('auth');
+    Route::post('records/new', 'RecordController@store');
+
+    Route::model('records', Record::class);
+    Route::get ('records/{record}', 'RecordController@show')->name('record.show');
+    Route::delete('records/{record}', 'RecordController@destroy')->name('record.destroy');
+
+    Route::get ('settings', 'UserController@settings')->name('user.settings');
+    Route::get ('script', 'UserController@showscript')->name('user.script');
+});

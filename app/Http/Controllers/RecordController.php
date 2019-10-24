@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Music;
 use App\Models\Record;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
@@ -45,5 +46,35 @@ class RecordController extends Controller {
         abort_unless($record->user_id === auth()->id(), 403);
         $record->delete();
         return redirect()->route('user.records', ['user' => auth()->id()]);
+    }
+
+    public function storeApi(Request $request) {
+        $data = $request->json()->all();
+        $unknown_musics=[];
+        foreach($data as $record){
+            $mus = Music::where('name', $record['title'])->first();
+            if($mus===NULL){
+                $unknown_musics[]=$record['title'];
+                continue;
+            }
+            try{
+                $rec = Record::create([
+                    'music_id' => $mus->id,
+                    'store' => $record['store'],
+                    'time' => Carbon::createFromFormat('Y/m/d H:i', $record['time']),
+                    'level' => $record['level'],
+                    'jc_cnt' => $record['critical'],
+                    'cr_cnt' => $record['justice'],
+                    'at_cnt' => $record['attack'],
+                    'ms_cnt' => $record['miss'],
+                    'max_cmb' => $record['combo'],
+                    'track_no' => $record['track'],
+                ]);
+            }catch(QueryException $e){}
+        }
+
+        $unknown_musics = array_unique($unknown_musics);
+        $unknown_musics = array_values($unknown_musics);
+        return response()->json(['unknowns' => $unknown_musics]);
     }
 }

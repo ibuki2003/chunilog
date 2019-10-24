@@ -21,5 +21,7 @@ return [
     ],
     'user' => [
         'show' => ':user の情報',
+        'settings' => 'ユーザー設定',
+        'script' => 'プレイ履歴登録スクリプト',
     ],
 ];
