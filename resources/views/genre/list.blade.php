@@ -10,7 +10,7 @@
         @foreach($genres as $genre)
             <li>
                 <a href="{{route('genre.show', ['genre'=>$genre->id])}}">
-                    {{$genre->id}}{{$genre->name}}
+                    {{$genre->name}}
                 </a>
             </li>
         @endforeach

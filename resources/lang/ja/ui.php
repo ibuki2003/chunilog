@@ -23,6 +23,7 @@ return [
         'info_gamerch' => 'CHUNITHM攻略Wikiで曲情報を見る',
         'level' => 'レベル',
         'difficulty' => '難易度',
+        'detail' => '詳細情報',
     ],
     'record' => [
         'detail' => 'プレイ詳細',
