@@ -10,7 +10,7 @@ class Music extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name', 'artist',
+        'name', 'artist', 'genre_id',
         'dif_bas', 'dif_adv', 'dif_exp', 'dif_mas',
     ];
 
