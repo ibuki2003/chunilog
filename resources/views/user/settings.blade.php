@@ -10,7 +10,7 @@
 @section('content')
 <ul class="nav flex-column">
     <li class="nav-item">
-        <a class="nav-link" href="{{route('change_password')}}">
+        <a class="nav-link" href="{{route('change_password', ['user'=>auth()->id()])}}">
             {{__('name.change_password')}}
         </a>
     </li><li class="nav-item">

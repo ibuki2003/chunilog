@@ -11,7 +11,7 @@
     <p class="alert alert-success">{{session('success')}}</p>
 @endif
 
-<form method="POST" action="{{ route('change_password') }}">
+<form method="POST" action="">
     @csrf
 
     <div class="form-group row">

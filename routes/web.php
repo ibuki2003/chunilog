@@ -24,11 +24,6 @@ Route::post('signout', 'Auth\LoginController@logout')->name('logout');
 Route::get ('signup', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('signup', 'Auth\RegisterController@register');
 
-Route::get('mdeditor', 'MainController@mdeditor')->name('md_editor');
-
-Route::get ('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change_password');
-Route::post('change_password', 'Auth\ChangePasswordController@changePassword');
-
 Route::view('agreement', 'agreement')->name('agreement');
 Route::view('privacy_policy', 'privacy_policy')->name('privacy_policy');
 
@@ -43,13 +38,20 @@ Route::model('user', User::class);
 Route::prefix('user/{user}')->group(function () {
     Route::get ('', 'UserController@show')->name('user.show');
     Route::get ('records', 'UserController@recordList')->name('user.records');
-    Route::get ('records/new', 'RecordController@create')->name('record.new');//->middleware('auth');
-    Route::post('records/new', 'RecordController@store');
+
+    Route::middleware('auth')->group(function(){
+        Route::get ('records/new', 'RecordController@create')->name('record.new');//->middleware('auth');
+        Route::post('records/new', 'RecordController@store');
+
+        Route::get ('settings', 'UserController@settings')->name('user.settings');
+        Route::get ('settings/script', 'UserController@showscript')->name('user.script');
+
+        Route::get ('settings/change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('change_password');
+        Route::post('settings/change_password', 'Auth\ChangePasswordController@changePassword');
+    });
 
     Route::model('records', Record::class);
     Route::get ('records/{record}', 'RecordController@show')->name('record.show');
     Route::delete('records/{record}', 'RecordController@destroy')->name('record.destroy');
 
-    Route::get ('settings', 'UserController@settings')->name('user.settings');
-    Route::get ('script', 'UserController@showscript')->name('user.script');
 });
