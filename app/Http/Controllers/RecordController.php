@@ -51,6 +51,7 @@ class RecordController extends Controller {
     public function storeApi(Request $request) {
         $data = $request->json()->all();
         $unknown_musics=[];
+        $count=0;
         foreach($data as $record){
             $mus = Music::where('name', $record['title'])->first();
             if($mus===NULL){
@@ -58,6 +59,7 @@ class RecordController extends Controller {
                 continue;
             }
             try{
+                $count++;
                 $rec = Record::create([
                     'music_id' => $mus->id,
                     'store' => $record['store'],
@@ -70,11 +72,11 @@ class RecordController extends Controller {
                     'max_cmb' => $record['combo'],
                     'track_no' => $record['track'],
                 ]);
-            }catch(QueryException $e){}
+            }catch(QueryException $e){$count--;}
         }
 
         $unknown_musics = array_unique($unknown_musics);
         $unknown_musics = array_values($unknown_musics);
-        return response()->json(['unknowns' => $unknown_musics]);
+        return response()->json(['unknowns' => $unknown_musics, 'count' => $count]);
     }
 }
