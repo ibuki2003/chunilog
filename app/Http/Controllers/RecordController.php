@@ -51,8 +51,24 @@ class RecordController extends Controller {
     public function storeApi(Request $request) {
         $data = $request->json()->all();
         $unknown_musics=[];
+        $errors=[];
         $count=0;
-        foreach($data as $record){
+        foreach($data as $idx => $record){
+            $break=false;
+            for([
+                'title', 'store', 'time', 'level',
+                'critical', 'justice', 'attack', 'miss',
+                'combo', 'track'] as $key){
+                if(!array_key_exists($key, $record)){
+                    $errors[]=[
+                        'idx'=>$idx,
+                        'msg'=>'key '.$key.' does not exist',
+                    ];
+                    $break=true;
+                }
+            }
+            if($break)continue;
+            if(array_key_exists('title', $record))
             $mus = Music::where('name', $record['title'])->first();
             if($mus===NULL){
                 $unknown_musics[]=$record['title'];
@@ -77,6 +93,10 @@ class RecordController extends Controller {
 
         $unknown_musics = array_unique($unknown_musics);
         $unknown_musics = array_values($unknown_musics);
-        return response()->json(['unknowns' => $unknown_musics, 'count' => $count]);
+        return response()->json([
+            'count' => $count,
+            'unknowns' => $unknown_musics,
+            'errors' => $errors,
+        ]);
     }
 }
