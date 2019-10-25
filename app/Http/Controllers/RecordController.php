@@ -48,6 +48,8 @@ class RecordController extends Controller {
         return redirect()->route('user.records', ['user' => auth()->id()]);
     }
 
+    public function empty(){return response()->json();}
+
     public function storeApi(Request $request) {
         $data = $request->json()->all();
         $unknown_musics=[];
