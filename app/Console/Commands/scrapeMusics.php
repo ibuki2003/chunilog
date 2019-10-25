@@ -65,12 +65,13 @@ class scrapeMusics extends Command
             }
             echo $genre_name, "\n";
 
-            $table = $d->next('table');
+            $table = $d->next();
+            while($table->get(0)->tagName !== 'table')
+                $table = $table->next();
             foreach($table->find('tbody tr') as $row) {
                 $r = pq($row);
                 $name = $r->find('th a')->attr('title');
-                //echo $title;
-                //echo $r->find('td[data-col=1]')->html(),"\n";
+                if($name===NULL)continue;
                 $artist = $r->find('td[data-col=1]')->text();
                 $artist = str_replace("\n", ' ', $artist);
 
