@@ -8,30 +8,32 @@
 @endsection
 
 @section('content')
-<table class="table">
-    <thead>
-        <tr>
-            <th>{{__('ui.music.name')}}</th>
-            <th>{{__('ui.record.time')}}</th>
-            <th>{{__('ui.music.level')}}</th>
-            <th>{{__('ui.music.difficulty')}}</th>
-            <th>{{__('ui.record.score')}}</th>
-            <th>{{__('ui.record.rank')}}</th>
-            <th>{{__('ui.record.detail')}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($user->records()->orderBy('time')->get() as $record)
+<div class="table-responsive">
+    <table class="table">
+        <thead>
             <tr>
-                <td>{{$record->music->name}}</td>
-                <td>{{$record->time}}</td>
-                <td class="table-{{$record->getLevelStyleName()}}">{{$record->getLevelStr()}}</td>
-                <td>{{$record->music->getDifficulty($record->level)}}</td>
-                <td>{{$record->getScore()}}</td>
-                <td>{{$record->getRank()}}</td>
-                <td><a href="{{route('record.show', ['user'=>$record->user_id, 'record'=>$record->id])}}">{{__('ui.record.detail')}}</a></td>
+                <th>{{__('ui.music.name')}}</th>
+                <th>{{__('ui.record.time')}}</th>
+                <th>{{__('ui.music.level')}}</th>
+                <th>{{__('ui.music.difficulty')}}</th>
+                <th>{{__('ui.record.score')}}</th>
+                <th>{{__('ui.record.rank')}}</th>
+                <th>{{__('ui.record.detail')}}</th>
             </tr>
-        @endforeach
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach($user->records()->orderBy('time')->get() as $record)
+                <tr>
+                    <td>{{$record->music->name}}</td>
+                    <td>{{$record->time}}</td>
+                    <td class="table-{{$record->getLevelStyleName()}}">{{$record->getLevelStr()}}</td>
+                    <td>{{$record->music->getDifficulty($record->level)}}</td>
+                    <td>{{$record->getScore()}}</td>
+                    <td>{{$record->getRank()}}</td>
+                    <td><a href="{{route('record.show', ['user'=>$record->user_id, 'record'=>$record->id])}}">{{__('ui.record.detail')}}</a></td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection
