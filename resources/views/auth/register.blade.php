@@ -32,7 +32,7 @@
         <label for="email" class="col-md-4 col-form-label text-md-right">{{__('ui.email')}}</label>
 
         <div class="col-md-6">
-            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" aria-describedby="emailHelp" required>
+            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" aria-describedby="emailHelp" required>
             <small id="emailHelp" class="form-text text-muted">{{__('ui.emailHelp')}}</small>
             @if ($errors->has('email'))
                 <div class="invalid-feedback">
@@ -72,6 +72,15 @@
                 <label class="form-check-label" for="agreement">
                     {{__('ui.agreement')}}
                 </label>
+                @if ($errors->has('agreement'))
+                    <div class="invalid-feedback">
+                        <ul>
+                            @foreach($errors->get('agreement') as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <p class="form-text text-muted">
                     <a class="mx-1" href="{{route('agreement')}}">{{__('name.agreement')}}</a>
                     <a class="mx-1" href="{{route('privacy_policy')}}">{{__('name.privacy_policy')}}</a>
