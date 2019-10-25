@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 
-Route::middleware(['chunithm_cors'])->group(function () {
+Route::middleware(['chunithm_cors', 'auth'])->group(function () {
     Route::options('new_records', function () {
         return response()->json();
     });

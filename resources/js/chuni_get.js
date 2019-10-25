@@ -33,25 +33,28 @@ function get_res(idx, token) {
     });
 }
 (async ()=>{
-    if(!location.href.startsWith('https://chunithm-net.com/mobile/record/playlog')){
-        alert('chunithm-netのプレイ履歴ページで実行してください.');
+    if(location.hostname!=='chunithm-net.com'){
+        alert('here is not chunithm-net');
     }else{
         let data=[];
         let token=$('input[name="token"]').val();
-        for(let i=0;i<50;++i)data.push(await get_res(i, token));
+        let idxs=$('input[name=idx]').map(function(i,e){return e.value;}).get();
+        for(let i of idxs)data.push(await get_res(i, token));
         console.log(JSON.stringify(data));
         return $.ajax({
-            url: 'https://chunilog.fuwa.dev/api/new_records',
+            url: '{api_path}',
+            xhrFields: {
+                withCredentials: true,
+            },
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
             dataType: "json",
-        }).then(function(data) {
-            if(data['unknowns'].length>0){
-                alert('次の楽曲がデータベースに存在しません.追加するには管理者に連絡してください:\n'
-                    + data['unknowns'].join('\n'))
-            }
+        }).then(function(){
             alert('success!');
+        }).fail(function(err) {
+            alert('error occured');
+            console.error(err);
         });
     }
 })();
