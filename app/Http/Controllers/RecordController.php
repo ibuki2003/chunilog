@@ -57,7 +57,7 @@ class RecordController extends Controller {
         $count=0;
         foreach($data as $idx => $record){
             $break=false;
-            for([
+            foreach([
                 'title', 'store', 'time', 'level',
                 'critical', 'justice', 'attack', 'miss',
                 'combo', 'track'] as $key){
