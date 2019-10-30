@@ -30,6 +30,8 @@ return [
         'counts' => '内訳',
         'store' => 'プレイ場所',
         'time' => 'プレイ時刻',
+        'track' => 'TRACK',
+        'combo' => 'COMBO',
         'score' => 'スコア',
         'rank' => 'ランク',
         'list' => 'プレイ一覧',
