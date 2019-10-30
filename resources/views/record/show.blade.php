@@ -22,6 +22,10 @@
 <h2>{{__('ui.record.time')}}</h2>
 <p>{{$record->time}}</p>
 
+<h2>{{__('ui.record.track')}}</h2>
+<p>TRACK {{$record->track_no}}</p>
+
+
 <h2>{{__('ui.record.counts')}}</h2>
 <table class="table">
     <tbody>
@@ -38,6 +42,7 @@
     <p class="alert alert-info">FULL COMBO</p>
 @endif
 <p>SCORE:{{$record->getScore()}}</p>
+<p>COMBO:{{$record->max_cmb}}</p>
 <p>RANK:{{$record->getRank()}}</p>
 
 @if($record->user_id == auth()->id())
