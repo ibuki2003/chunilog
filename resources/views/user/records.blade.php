@@ -33,7 +33,14 @@
                     <td class="table-{{$record->getLevelStyleName()}}">{{$record->getLevelStr()}}</td>
                     <td>{{$record->music->getDifficulty($record->level)}}</td>
                     <td>{{$record->getScore()}}</td>
-                    <td>{{$record->getRank()}}</td>
+                    <td>
+                        {{$record->getRank()}}
+                        @if($record->isAllJustice())
+                            <span class="badge badge-success">AJ</span>
+                        @elseif($record->isFullCombo())
+                            <span class="badge badge-info">FC</span>
+                        @endif
+                    </td>
                     <td class="text-nowrap"><a href="{{route('record.show', ['user'=>$record->user_id, 'record'=>$record->id])}}">{{__('ui.record.detail')}}</a></td>
                 </tr>
             @endforeach
