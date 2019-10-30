@@ -13,24 +13,28 @@
         <thead>
             <tr>
                 <th>{{__('ui.music.name')}}</th>
+                <th>{{__('ui.record.store')}}</th>
                 <th>{{__('ui.record.time')}}</th>
+                <th>{{__('ui.record.track')}}</th>
                 <th>{{__('ui.music.level')}}</th>
                 <th>{{__('ui.music.difficulty')}}</th>
                 <th>{{__('ui.record.score')}}</th>
                 <th>{{__('ui.record.rank')}}</th>
-                <th>{{__('ui.record.detail')}}</th>
+                <th class="text-nowrap">{{__('ui.record.detail')}}</th>
             </tr>
         </thead>
         <tbody>
             @foreach($user->records()->orderBy('time')->get() as $record)
                 <tr>
                     <td>{{$record->music->name}}</td>
+                    <td class="text-nowrap">{{$record->store}}</td>
                     <td>{{$record->time}}</td>
+                    <td>{{$record->track_no}}</td>
                     <td class="table-{{$record->getLevelStyleName()}}">{{$record->getLevelStr()}}</td>
                     <td>{{$record->music->getDifficulty($record->level)}}</td>
                     <td>{{$record->getScore()}}</td>
                     <td>{{$record->getRank()}}</td>
-                    <td><a href="{{route('record.show', ['user'=>$record->user_id, 'record'=>$record->id])}}">{{__('ui.record.detail')}}</a></td>
+                    <td class="text-nowrap"><a href="{{route('record.show', ['user'=>$record->user_id, 'record'=>$record->id])}}">{{__('ui.record.detail')}}</a></td>
                 </tr>
             @endforeach
         </tbody>
