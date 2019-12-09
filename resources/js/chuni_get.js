@@ -18,7 +18,10 @@
         let data=[];
         let token=$('input[name="token"]').val();
         let idxs=$('input[name=idx]').map(function(i,e){return e.value;}).get();
-        for(let i of idxs)data.push(await get_res(i, token));
+        for(let i of idxs){
+            data.push(await get_res(i, token));
+            await new Promise(r=>setTimeout(r, 1000)); // sleep 1000 ms
+        }
         console.log(JSON.stringify(data));
         add_log('記録の取得が完了しました');
         return $.ajax({
@@ -97,6 +100,6 @@
 
     function add_log(str) {
         modal_ul.append($('<li>').text(str));
-        modal_ul.scrollTop(modal_ul[0].scrollHeight);
+        modal.scrollTop(modal[0].scrollHeight);
     }
 })();
