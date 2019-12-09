@@ -71,7 +71,7 @@ class RecordController extends Controller {
             }
             if($break)continue;
             if(array_key_exists('title', $record))
-            $mus = Music::where('name', $record['title'])->first();
+            $mus = Music::whereRaw('REPLACE(`name`, \' \', \'\') = ?', [str_replace(' ', '', $record['title'])])->first();
             if($mus===NULL){
                 $unknown_musics[]=$record['title'];
                 continue;
